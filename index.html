@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Birthday Wish </title>
+<title>Birthday Wish</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body{
-margin:0;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-background:#ff69b4;
-font-family:Arial;
-flex-direction:column;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#ff69b4;
+    font-family:Arial;
+    flex-direction:column;
 }
 
 h1{
-color:white;
+    color:white;
 }
 
 #cake{
-font-size:120px;
-}  
+    font-size:120px;
+}
 #cakeArea{
     position:relative;
     width:300px;
@@ -38,26 +38,35 @@ font-size:120px;
     user-select:none;
     touch-action:none;
 }
+
+#blowBtn{
+    font-size:20px;
+    padding:10px 20px;
+    border-radius:10px;
+    border:none;
+    cursor:pointer;
+    margin-top:10px;
+}
 </style>
 </head>
 <body>
-<h1>Happy Birthday Payal </h1>
+<h1>Happy Birthday Payal</h1>
 
 <div id="cakeArea">
     <div id="cake">🎂</div>
     <div id="knife">🔪</div>
 </div>
+
+<button id="blowBtn">🕯️ Blow Out Candles</button>
+
+<audio id="birthdaySong">
+  <source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 
 const knife = document.getElementById("knife");
 const cake = document.getElementById("cake");
-
-let dragging = false;
-let cutDone = false;
-
-    const knife = document.getElementById("knife");
-const cake = document.getElementById("cake");
-
 const blowBtn = document.getElementById("blowBtn");
 const song = document.getElementById("birthdaySong");
 
@@ -97,21 +106,17 @@ document.addEventListener("pointermove", (e) => {
 
         cake.innerHTML = "🍰";
 
-        document.getElementById("birthdaySong").play();
+        song.play();
 
-alert("🎉 Cake Cut Successfully!");
+        alert("🎉 Cake Cut Successfully!");
 
-setTimeout(() => {
-    alert("🎂 Happy Birthday Payal! ❤️🎉");
-}, 1000);
-
+        setTimeout(() => {
+            alert("🎂 Happy Birthday Payal! ❤️🎉");
+        }, 1000);
     }
 
 });
 
 </script>
- <audio id="birthdaySong">
-  <source src="birthday.mp3" type="audio/mpeg">
-</audio>   
 </body>
 </html>

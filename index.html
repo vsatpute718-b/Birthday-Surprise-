@@ -13,6 +13,8 @@ body{
     background:#ff69b4;
     font-family:Arial;
     flex-direction:column;
+    overflow:hidden;
+    position:relative;
 }
 
 h1{
@@ -27,6 +29,9 @@ h1{
     width:300px;
     height:220px;
     margin:20px auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 #knife{
@@ -39,13 +44,28 @@ h1{
     touch-action:none;
 }
 
-#blowBtn{
+#blowBtn, #restartBtn{
     font-size:20px;
     padding:10px 20px;
     border-radius:10px;
     border:none;
     cursor:pointer;
     margin-top:10px;
+}
+
+#restartBtn{
+    display:none;
+    background:white;
+    color:#ff69b4;
+    font-weight:bold;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    margin-top:0;
+    z-index:10;
+    font-size:14px;
+    padding:6px 12px;
+    border-radius:20px;
 }
 
 #message{
@@ -56,6 +76,42 @@ h1{
     font-weight:bold;
     text-align:center;
     padding:0 20px;
+}
+
+#photoSection{
+    display:none;
+    text-align:center;
+    margin-top:20px;
+}
+
+#photoSection img{
+    width:200px;
+    height:200px;
+    object-fit:cover;
+    border-radius:15px;
+    border:5px solid white;
+    box-shadow:0 4px 15px rgba(0,0,0,0.3);
+}
+
+#photoSection p{
+    color:white;
+    font-size:18px;
+    margin-top:10px;
+}
+
+.confetti{
+    position:fixed;
+    top:-20px;
+    font-size:28px;
+    pointer-events:none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform: translateY(110vh) rotate(360deg);
+        opacity:0.8;
+    }
 }
 </style>
 </head>
@@ -68,8 +124,14 @@ h1{
 </div>
 
 <button id="blowBtn">🕯️ Blow Out Candles</button>
+<button id="restartBtn">🔄 Restart</button>
 
 <div id="message"></div>
+
+<div id="photoSection">
+    <img src="payal.jpg" alt="Payal">
+    <p>Wishing you all the happiness in the world! 💖</p>
+</div>
 
 <audio id="birthdaySong">
   <source src="birthday.mp3" type="audio/mpeg">
@@ -80,11 +142,26 @@ h1{
 const knife = document.getElementById("knife");
 const cake = document.getElementById("cake");
 const blowBtn = document.getElementById("blowBtn");
+const restartBtn = document.getElementById("restartBtn");
 const song = document.getElementById("birthdaySong");
 const message = document.getElementById("message");
+const photoSection = document.getElementById("photoSection");
 
 let dragging = false;
 let cutDone = false;
+
+function launchConfetti(){
+    const emojis = ["🎉","🎊","✨","🎈","💖"];
+    for(let i=0;i<40;i++){
+        const piece = document.createElement("div");
+        piece.className = "confetti";
+        piece.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+        piece.style.left = Math.random()*100 + "vw";
+        piece.style.animationDuration = (2 + Math.random()*2) + "s";
+        document.body.appendChild(piece);
+        setTimeout(()=> piece.remove(), 4000);
+    }
+}
 
 blowBtn.addEventListener("click", () => {
     cake.innerHTML = "🎂";
@@ -123,11 +200,29 @@ document.addEventListener("pointermove", (e) => {
 
         message.innerText = "🎉 Cake Cut Successfully!";
 
+        launchConfetti();
+
         setTimeout(() => {
             message.innerText = "🎂 Happy Birthday Payal! ❤️🎉";
+            launchConfetti();
+            restartBtn.style.display = "inline-block";
+            photoSection.style.display = "block";
         }, 1000);
     }
 
+});
+
+restartBtn.addEventListener("click", () => {
+    cake.innerHTML = "🎂";
+    knife.style.left = "10px";
+    knife.style.top = "10px";
+    dragging = false;
+    cutDone = false;
+    message.innerText = "";
+    restartBtn.style.display = "none";
+    photoSection.style.display = "none";
+    song.pause();
+    song.currentTime = 0;
 });
 
 </script>

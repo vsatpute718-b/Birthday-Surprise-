@@ -49,6 +49,47 @@ font-size:120px;
     <div id="cake">🎂</div>
     <div id="knife">🔪</div>
 </div>
+<script>
 
+const knife = document.getElementById("knife");
+const cake = document.getElementById("cake");
+
+let dragging = false;
+let cutDone = false;
+
+knife.addEventListener("pointerdown", () => {
+    dragging = true;
+});
+
+document.addEventListener("pointerup", () => {
+    dragging = false;
+});
+
+document.addEventListener("pointermove", (e) => {
+
+    if (!dragging || cutDone) return;
+
+    const area = document.getElementById("cakeArea").getBoundingClientRect();
+
+    let x = e.clientX - area.left;
+    let y = e.clientY - area.top;
+
+    knife.style.left = x + "px";
+    knife.style.top = y + "px";
+
+    // Cut when the knife reaches the middle of the cake
+    if (x > 120 && x < 190 && y > 60) {
+
+        cutDone = true;
+
+        cake.innerHTML = "🍰";
+
+        alert("🎉 Cake Cut Successfully!");
+
+    }
+
+});
+
+</script>
 </body>
 </html>

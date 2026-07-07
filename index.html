@@ -47,6 +47,16 @@ h1{
     cursor:pointer;
     margin-top:10px;
 }
+
+#message{
+    color:white;
+    font-size:24px;
+    margin-top:20px;
+    min-height:30px;
+    font-weight:bold;
+    text-align:center;
+    padding:0 20px;
+}
 </style>
 </head>
 <body>
@@ -59,6 +69,8 @@ h1{
 
 <button id="blowBtn">🕯️ Blow Out Candles</button>
 
+<div id="message"></div>
+
 <audio id="birthdaySong">
   <source src="birthday.mp3" type="audio/mpeg">
 </audio>
@@ -69,6 +81,7 @@ const knife = document.getElementById("knife");
 const cake = document.getElementById("cake");
 const blowBtn = document.getElementById("blowBtn");
 const song = document.getElementById("birthdaySong");
+const message = document.getElementById("message");
 
 let dragging = false;
 let cutDone = false;
@@ -76,7 +89,7 @@ let cutDone = false;
 blowBtn.addEventListener("click", () => {
     cake.innerHTML = "🎂";
     song.play();
-    alert("🕯️ Candles Blown Out! Now cut the cake!");
+    message.innerText = "🕯️ Candles Blown Out! Now cut the cake!";
 });
 
 knife.addEventListener("pointerdown", () => {
@@ -108,10 +121,10 @@ document.addEventListener("pointermove", (e) => {
 
         song.play();
 
-        alert("🎉 Cake Cut Successfully!");
+        message.innerText = "🎉 Cake Cut Successfully!";
 
         setTimeout(() => {
-            alert("🎂 Happy Birthday Payal! ❤️🎉");
+            message.innerText = "🎂 Happy Birthday Payal! ❤️🎉";
         }, 1000);
     }
 

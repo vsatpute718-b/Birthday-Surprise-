@@ -21,6 +21,22 @@ color:white;
 
 #cake{
 font-size:120px;
+}  
+#cakeArea{
+    position:relative;
+    width:300px;
+    height:220px;
+    margin:20px auto;
+}
+
+#knife{
+    position:absolute;
+    top:10px;
+    left:10px;
+    font-size:60px;
+    cursor:grab;
+    user-select:none;
+    touch-action:none;
 }
 </style>
 </head>
@@ -29,7 +45,10 @@ font-size:120px;
 
 <h1>Happy Birthday Payal </h1>
 
-<div id="cake">🎂</div>
+<div id="cakeArea">
+    <div id="cake">🎂</div>
+    <div id="knife">🔪</div>
+</div>
 
 </body>
 </html>

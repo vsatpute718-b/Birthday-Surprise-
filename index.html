@@ -40,7 +40,9 @@ font-size:120px;
 }
 </style>
 </head>
-
+<audio id="birthdaySong">
+  <source src="birthday.mp3" type="audio/mpeg">
+</audio>
 <body>
 
 <h1>Happy Birthday Payal </h1>
@@ -84,7 +86,13 @@ document.addEventListener("pointermove", (e) => {
 
         cake.innerHTML = "🍰";
 
-        alert("🎉 Cake Cut Successfully!");
+        document.getElementById("birthdaySong").play();
+
+alert("🎉 Cake Cut Successfully!");
+
+setTimeout(() => {
+    alert("🎂 Happy Birthday Payal! ❤️🎉");
+}, 1000);
 
     }
 

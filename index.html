@@ -40,11 +40,7 @@ font-size:120px;
 }
 </style>
 </head>
-<audio id="birthdaySong">
-  <source src="birthday.mp3" type="audio/mpeg">
-</audio>
 <body>
-
 <h1>Happy Birthday Payal </h1>
 
 <div id="cakeArea">
@@ -58,6 +54,21 @@ const cake = document.getElementById("cake");
 
 let dragging = false;
 let cutDone = false;
+
+    const knife = document.getElementById("knife");
+const cake = document.getElementById("cake");
+
+const blowBtn = document.getElementById("blowBtn");
+const song = document.getElementById("birthdaySong");
+
+let dragging = false;
+let cutDone = false;
+
+blowBtn.addEventListener("click", () => {
+    cake.innerHTML = "🎂";
+    song.play();
+    alert("🕯️ Candles Blown Out! Now cut the cake!");
+});
 
 knife.addEventListener("pointerdown", () => {
     dragging = true;
@@ -99,5 +110,8 @@ setTimeout(() => {
 });
 
 </script>
+ <audio id="birthdaySong">
+  <source src="birthday.mp3" type="audio/mpeg">
+</audio>   
 </body>
 </html>

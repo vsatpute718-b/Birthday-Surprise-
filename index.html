@@ -29,10 +29,6 @@ color:white;
 }
 
 h1{
- <div id="slideshow">
-<img id="photo" src="payal1.jpg">
-</div>
- 
 font-size:42px;
 margin-bottom:20px;
 text-shadow:2px 2px 8px black;
@@ -191,9 +187,10 @@ transition:1s;
 <body>
 
 <div class="container">
-
-<h1>🎉 Happy Birthday Payal 🎉</h1>
-
+ <h1 id="title" style="display:none;">🎉 Happy Birthday Payal 🎉</h1>
+ <div id="slideshow" style="display:none;">
+    <img id="photo" src="payal.jpg">
+ </div>
 <div id="cakeArea">
 
 <div id="cake">🎂</div>
@@ -266,6 +263,7 @@ document.addEventListener("pointermove", function(e){
 
         cutDone = true;
        cake.innerHTML = "🍰";
+   document.getElementById("title").style.display = "block";
 
 message.style.display = "block";
 

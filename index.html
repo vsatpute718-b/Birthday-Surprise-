@@ -150,6 +150,24 @@ transform:scale(3);
 opacity:0;
 }
 }
+ .heart{
+position:fixed;
+bottom:-30px;
+font-size:30px;
+animation:heartUp 6s linear forwards;
+pointer-events:none;
+}
+
+@keyframes heartUp{
+0%{
+transform:translateY(0) scale(0.5);
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) scale(1.5);
+opacity:0;
+}
+}   
 </style>
 </head>
 
@@ -305,7 +323,25 @@ document.body.appendChild(f);
 }
 
 }
+function createHearts(){
 
+for(let i=0;i<30;i++){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.animationDelay=Math.random()*2+"s";
+
+document.body.appendChild(h);
+
+}
+
+}
 </script>
 
 </body>

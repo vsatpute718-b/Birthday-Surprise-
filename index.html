@@ -29,6 +29,10 @@ color:white;
 }
 
 h1{
+ <div id="slideshow">
+<img id="photo" src="payal1.jpg">
+</div>
+ 
 font-size:42px;
 margin-bottom:20px;
 text-shadow:2px 2px 8px black;
@@ -167,7 +171,20 @@ opacity:1;
 transform:translateY(-120vh) scale(1.5);
 opacity:0;
 }
-}   
+}  
+#slideshow{
+margin:20px;
+}
+
+#photo{
+width:220px;
+height:220px;
+border-radius:20px;
+object-fit:cover;
+border:5px solid white;
+box-shadow:0 0 20px white;
+transition:1s;
+} 
 </style>
 </head>
 
@@ -340,8 +357,30 @@ h.style.animationDelay=Math.random()*2+"s";
 document.body.appendChild(h);
 
 }
+}
+const photos=[
+"payal1.jpg",
+"payal2.jpg",
+"payal3.jpg",
+"payal4.jpg",
+"payal5.jpg"
+];
+
+let currentPhoto=0;
+
+setInterval(function(){
+
+currentPhoto++;
+
+if(currentPhoto>=photos.length){
+
+currentPhoto=0;
 
 }
+
+document.getElementById("photo").src=photos[currentPhoto];
+
+},3000); 
 </script>
 
 </body>
